@@ -5,8 +5,10 @@
  */
 
 :root {
-	--accent: #9123ff;
-	--accent-dark: #3e0148;
+	--primary: #9123ff;
+	--primary-dark: #0d0018;
+	--secondary: #31ffc8;
+	--secondary-dark: #03815b;
 	--white: 255, 255, 255;
 	--black: 15, 18, 25;
 	--gray: 96, 115, 159;
@@ -78,12 +80,9 @@ h3 {
 	font-size: 1.953em;
 }
 
-h4 {
-	font-size: 1.563em;
-}
-
+h4,
 h5 {
-	font-size: 1.25em;
+	font-size: 1em;
 }
 
 strong,
@@ -92,11 +91,11 @@ b {
 }
 
 a {
-	color: var(--accent);
+	color: var(--primary);
 }
 
 a:hover {
-	color: var(--accent);
+	color: var(--primary);
 }
 
 p {
@@ -128,8 +127,9 @@ img {
 
 code {
 	padding: 2px 5px;
-	background-color: rgb(var(--gray-light));
+	background-color: var(--secondary);
 	border-radius: 2px;
+	color: rgb(var(--black));
 }
 
 pre {
@@ -142,7 +142,7 @@ pre>code {
 }
 
 blockquote {
-	border-left: 4px solid var(--accent);
+	border-left: 4px solid var(--primary);
 	padding: 0 0 0 20px;
 	margin: 0px;
 	font-size: 1.333em;

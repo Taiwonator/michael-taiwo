@@ -2,6 +2,7 @@
 import BaseHead from "../components/BaseHead.astro";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
+import Snake from "../components/Snake.astro";
 import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
 ---
 
@@ -20,6 +21,11 @@ import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
 </html>
 
 <style>
+	main {
+		height: 60vh;
+		display: grid;
+		place-content: center;
+	}
 	.title {
 		text-align: center;
 	}

@@ -38,18 +38,28 @@ const today = new Date();
 		background: rgb(var(--black));
 		color: rgb(var(--white));
 		text-align: center;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		gap: 1em;
 	}
 	.social-links {
 		display: flex;
 		justify-content: center;
 		gap: 1em;
-		margin-top: 1em;
 	}
 	.social-links a {
 		text-decoration: none;
 		color: rgb(var(--white));
 	}
 	.social-links a:hover {
-		color: var(--accent);
+		color: var(--primary);
+	}
+
+	@media (max-width: 720px) {
+		footer {
+			flex-direction: column;
+			padding: 1em;
+		}
 	}
 </style>
