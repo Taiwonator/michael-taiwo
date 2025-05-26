@@ -15,18 +15,106 @@ import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
 		<Header />
 		<main>
 			<h1 class="title">Hiya, I'm Michael 👋</h1>
+			<p class="description">I like <code>building tools</code>, <code>system architecture</code> and <code>centering a div</code></p>
 		</main>
 		<Footer />
+		<Snake />
 	</body>
 </html>
 
 <style>
+	body {
+		position: relative;
+	}
 	main {
-		height: 60vh;
+		height: 80vh;
 		display: grid;
 		place-content: center;
 	}
 	.title {
 		text-align: center;
+	}
+
+	.description {
+		text-align: center;
+	}
+
+	.description code:nth-child(1) {
+		background-color: var(--primary);
+		color: rgb(var(--white));
+		animation: codeColorCycle1 3s infinite;
+		animation-timing-function: steps(1, end);
+	}
+
+	@keyframes codeColorCycle1 {
+		0% {
+			background-color: var(--primary);
+			color: rgb(var(--white));
+		}
+		33.33% {
+			background-color: var(--secondary);
+			color: rgb(var(--black))
+		}
+		66.6% {
+			background-color: yellow;
+			color: rgb(var(--black))
+		}
+		100% {
+			background-color: var(--primary);
+			color: rgb(var(--white));
+		}
+	}
+
+	.description code:nth-child(2) {
+		background-color: var(--secondary);
+		color: rgb(var(--black));
+		animation: codeColorCycle2 3s infinite;
+		animation-timing-function: steps(1, end);
+	}
+
+	@keyframes codeColorCycle2 {
+		0% {
+			background-color: var(--secondary);
+			color: rgb(var(--black))
+		}
+		33.33% {
+			background-color: yellow;
+			color: rgb(var(--black))
+		}
+		66.6% {
+
+			background-color: var(--primary);
+			color: rgb(var(--white));
+		}
+		100% {
+			background-color: var(--secondary);
+			color: rgb(var(--black))
+		}
+	}
+
+	.description code:nth-child(3) {
+		background-color: yellow;
+		color: rgb(var(--black));
+		animation: codeColorCycle3 3s infinite;
+		animation-timing-function: steps(1, end);
+	}
+
+	@keyframes codeColorCycle3 {
+		0% {
+			background-color: yellow;
+			color: rgb(var(--black))
+		}
+		33.33% {
+			background-color: var(--primary);
+			color: rgb(var(--white));
+		}
+		66.6% {
+			background-color: var(--secondary);
+			color: rgb(var(--black))
+		}
+		100% {
+			background-color: yellow;
+			color: rgb(var(--black))
+		}
 	}
 </style>

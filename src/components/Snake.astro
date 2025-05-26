@@ -1,0 +1,388 @@
+---
+console.log('hello there')
+---
+<canvas id="2d-snake-canvas" />
+
+<!-- <script>
+    const config = {
+        backgroundColor: "black",
+        initialSnakeColor: "#9123ff",
+        snakeSize: 48,
+        snakeVelocity: 1
+    }
+    const canvas = document.getElementById("2d-snake-canvas") as HTMLCanvasElement
+    const ctx = canvas.getContext("2d")
+
+    function initCtx() {
+        if(!ctx) return
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        ctx.fillStyle = config.backgroundColor
+        ctx.fillRect(0, 0, window.innerWidth, window.innerHeight)
+    }
+
+    function init() {
+        initCtx()
+
+        // Responsiveness
+        window.addEventListener('resize', () => {
+            initCtx()
+        })
+
+        // Game Controls
+        window.addEventListener('keypress', (e) => {
+            const cleanKey = e.key.toLowerCase()
+            const snake = getSnake()
+            if(!snake) return 
+            switch(cleanKey) {
+                case 'w':
+                    console.log('snake up')
+                    snake.setNextDirection(0)
+                    break;
+                case 'd':
+                    console.log('snake right')
+                    snake.setNextDirection(1)
+                    break;
+                case 's':
+                    console.log('snake down')
+                    snake.setNextDirection(2)
+                    break;
+                case 'a':
+                    console.log('snake left')
+                    snake.setNextDirection(3)
+                    break;
+                default:
+                    break;
+            }
+        })
+    }
+
+
+
+    if(ctx) {
+        // ctx.globalAlpha = 0.2
+        ctx.fillStyle = "#9123ff"
+        ctx.fillRect(100, 200, config.snakeSize, config.snakeSize)
+    }
+
+    interface SnakeMap {
+        [key: string]: Snake
+    }
+    const SNAKEID = "playerX"
+    const snakes: SnakeMap = {}
+    class Snake {
+        id: string
+        x: number
+        y: number
+        prevX?: number
+        prevY?: number
+        dir: number
+        nextDir: number
+        bodyCoordinates: { x: number, y: number }[] 
+
+        constructor(id, x=0, y=0, dir=1) {
+            if(!id) {
+                console.error("ID required for snake")
+                return
+            }
+            this.id = id
+            this.x = x
+            this.y = y
+            this.dir = dir
+            this.nextDir = dir
+            this.bodyCoordinates = [{x, y}]
+
+        }
+
+        setNextDirection(d: number) {
+            switch(d) {
+                case 0:
+                    if(this.dir === 2) return
+                    break;
+                case 1:
+                    if(this.dir === 3) return
+                    break
+                case 2:
+                    if(this.dir === 0) return
+                    break
+                case 3:
+                    if(this.dir === 1) return
+                    break
+                default:
+                    console.error("(move) not a recongnised direction:", this.dir)
+                    return
+            }
+            this.dir = d
+        }
+
+        // Lets figure out how we want the move to work 
+        move() {
+            let nextX, nextY
+
+            if(this.x) this.prevX = this.x
+            if(this.y) this.prevY = this.y
+            switch(this.dir) {
+                case 0:
+                    if(this.y <= 0) return this.y = canvas.height
+                    // if(this.y % config.snakeSize === 0) this.dir = this.nextDir
+                    this.y -= config.snakeSize * config.snakeVelocity
+                    break;
+                case 1:
+                    if(this.x >= canvas.width) return this.x = 0
+                    // if(this.x % config.snakeSize === 0) this.dir = this.nextDir
+                    this.x += config.snakeSize * config.snakeVelocity
+                    break
+                case 2:
+                    if(this.y >= canvas.height) return this.y = 0
+                    // if(this.y % config.snakeSize === 0) this.dir = this.nextDir
+                    this.y += config.snakeSize * config.snakeVelocity
+                    break
+                case 3:
+                    if(this.x <= 0) return this.x = canvas.width
+                    // if(this.x % config.snakeSize === 0) this.dir = this.nextDir
+                    this.x -= config.snakeSize * config.snakeVelocity
+                    break
+                default:
+                    console.error("(move) not a recongnised direction:", this.dir)
+                    return
+            }
+        }
+    }
+
+    snakes[SNAKEID] = new Snake(SNAKEID, 100, 100)
+    function paintSnake() {
+        // window.requestAnimationFrame(paintSnake)
+        const snake = snakes[SNAKEID]
+        if(!snake) {
+            console.error('(paintSnake) No snake found')
+            return
+        }
+        // Updates snake's coorindates
+        snake.move()
+
+        // Uses new coordinates to pain
+        if(ctx) {
+            const { x, y, prevX, prevY } = snake
+            // ctx.globalAlpha = 0.2
+            ctx.fillStyle = config.backgroundColor
+            if(prevX && prevY) ctx.fillRect(prevX, prevY, config.snakeSize, config.snakeSize)
+            ctx.fillStyle = config.initialSnakeColor
+            ctx.fillRect(x, y, config.snakeSize, config.snakeSize)
+        }
+
+    }
+
+    //===
+    var fpsInterval: number, startTime: number, now: number, then: number, elapsed: number; 
+
+  
+    function startTrail(fps: number) { 
+        fpsInterval = 1000 / fps; 
+        then = Date.now(); 
+        startTime = then; 
+        console.log(startTime); 
+        animate(); 
+    } 
+  
+    function animate() {   
+        requestAnimationFrame(animate); 
+  
+        now = Date.now(); 
+        elapsed = now - then; 
+  
+        if (elapsed > fpsInterval) { 
+            then = now - (elapsed % fpsInterval); 
+            paintSnake()
+        } 
+    } 
+    //===
+
+    function getSnake() {
+        if(!snakes[SNAKEID]) {
+            console.error('No snake with ID:', SNAKEID, 'found')
+            return null
+        }
+        return snakes[SNAKEID]
+    }
+
+    init()
+    startTrail(3); 
+    startTrail(60); 
+
+    //===
+
+    //===
+    
+
+</script> -->
+
+<style>
+    canvas {
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: -1;
+    }
+</style>
+
+<!-- Reading Canvas Mozilla docs -->
+
+<!-- - HTMLCANVASELEMENT
+ - INSTANCE PROPERTIES
+ - improve performance by using alpha:false (transulency should not be a factor)
+
+ - INSTANCE METHODS
+ - toBlob - can store canvas as a blob, and store in cache, useful but can't think of the best example, but won't need to calculate repaints, just pain
+ - you can capture a screen, so record a video of snake and send it to someone
+ - toDataURL is a representation of the image which defaults to png...
+ - offscreen canvas seem intersting, transferControlToOffscreen too
+
+ - INSTANCE EVENTS
+ - contextlost - maybe for cleanup?
+ - contextrestored
+ 
+- CANVASRENDERINGCONTEXT2D
+  - Used for drawing shapes, text, images and other objects.
+  - offscreencanvas has its own version of this, but inherits from this it seems
+
+  - CONTEXT
+  - isContextLost, ah an event also gets fired about this
+
+  - DRAWING 
+    - Apparenlty 3 methods to immedantly deaw rectangles to the canvas
+        - clearRect - clear shape
+        - fillRect - colored shape
+        - strokeRect - stoke of shape
+    - Drawing text as well, Apparently TEXTMETRICS is a thing...
+        - fillText - fills text at a position
+        - strokeText - stokes text at a position
+        - measureText - returns measure object...
+    - Line Styles - what I thought before was stokeRect lol, didn't read
+        - lineWidth
+        - lineCap
+        - lineJoin
+        - milter
+        - setLineDash
+        - lineDashOffset 
+        All the good stuff.
+    - Text Styles
+        - font you can change, as well as align, direction (ltr, rtl) etc
+    - Gradients
+        - many different create[]Gradient functions
+    - Shadows
+        - can add what you want
+    - Paths
+        - beginPath and closePath, interesting. Seems it would be used for a drawing tool. Like a whiteboard. Or signature
+        - moveTo, makes sense. a couple of []To methods.
+        - now we have arc, ellipse, rect, roundedRect
+    - Drawing Paths
+        - apparently fill takes the current sub-paths. What does current mean in this context? Same as .stroke. \
+        - we have .clip, again uses the current sub paths. 
+
+- TRANSFORMATIONS
+    - objects have current transformation matrix, and methods to manipulate it. 
+    - Applied when creating current default path, paintinting txt, shapes and Path2D objects (what is this?)
+    - things like getTransform are apparently historic? Now DOMMatrix is a thing. Don't know what that is
+    - Old legacy we have scale, rotate, getTransform etc. 
+
+- COMPOSITION
+    - to do with alpha values 
+
+DRAWING IMAGES
+    - drawImage
+
+PIXEL MANIPULATION
+    - So we have the IMAGEDATA obect. 
+
+We'll come back to this :)
+
+
+
+-->
+<!-- 
+<script>
+const canvas   = document.getElementById('2d-snake-canvas');
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+const ctx      = canvas.getContext('2d');
+const GRID     = 20;      // pixels per cell
+const TICK_MS  = 100;     // ms per grid-step
+let lastTime   = 0;
+let tickDelta  = 0;
+
+// snake is an array of { x, y, prevX, prevY } in grid coords
+let snake = [
+  { x: 5, y: 5, prevX: 5, prevY: 5 },
+  { x: 4, y: 5, prevX: 4, prevY: 5 },
+  { x: 3, y: 5, prevX: 3, prevY: 5 },
+];
+let dir = { x: 1, y: 0 };  // moving right
+
+function update() {
+  // record “previous” grid positions
+  snake.forEach(seg => {
+    seg.prevX = seg.x;
+    seg.prevY = seg.y;
+  });
+
+  // move head in grid
+  snake[0].x += dir.x;
+  snake[0].y += dir.y;
+
+  // wrap or collision logic here…
+
+  // move each body segment into the spot the one in front used to be
+  for (let i = 1; i < snake.length; i++) {
+    snake[i].x = snake[i-1].prevX;
+    snake[i].y = snake[i-1].prevY;
+  }
+}
+
+function draw(interp) {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+  snake.forEach(seg => {
+    // how far (in cells) have we moved this tick?
+    const dx = seg.x - seg.prevX;
+    const dy = seg.y - seg.prevY;
+
+    // pixel position = (old cell + fracMoved) × PIXELS_PER_CELL
+    const px = (seg.prevX + dx *  ) * GRID;
+    const py = (seg.prevY + dy * interp) * GRID;
+
+    ctx.fillStyle = 'lime';
+    ctx.fillRect(px, py, GRID, GRID);
+  }); 
+}
+
+function loop(now) {
+  if (!lastTime) lastTime = now;
+  const dt = now - lastTime;
+  lastTime = now;
+
+  tickDelta += dt;
+  // on each tick, advance one grid cell
+  if (tickDelta >= TICK_MS) {
+    update();
+    tickDelta -= TICK_MS;
+  }
+
+  // interp is [0..1): how far we are through the current grid-step
+  const interp = tickDelta / TICK_MS;
+  draw(interp);
+
+  requestAnimationFrame(loop);
+}
+
+// basic input
+window.addEventListener('keypress', e => {
+  const cleanKey = e.key.toLowerCase()
+  if (cleanKey === 'w'    && dir.y === 0) dir = { x: 0, y: -1 };
+  if (cleanKey === 's'  && dir.y === 0) dir = { x: 0, y:  1 };
+  if (cleanKey === 'a'  && dir.x === 0) dir = { x: -1, y: 0 };
+  if (cleanKey === 'd' && dir.x === 0) dir = { x:  1, y: 0 };
+});
+
+// kick it off
+requestAnimationFrame(loop);
+</script> -->
