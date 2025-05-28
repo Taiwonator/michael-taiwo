@@ -20,6 +20,10 @@ const posts = (await getCollection("blog")).sort(
 				width: 960px;
 				min-height: 80vh;
 			}
+
+			.plus {
+				color: yellow;
+			}
 			ul {
 				display: grid;
 				gap: 1rem;
@@ -48,7 +52,7 @@ const posts = (await getCollection("blog")).sort(
 			.title {
 				margin: 0;
 				color: rgb(var(--white));
-				line-height: 1;
+				line-height: 2;
 			}
 			.date {
 				margin: 0;
@@ -78,6 +82,8 @@ const posts = (await getCollection("blog")).sort(
 		<Header />
 		<main>
 			<section>
+				<h1>My Mind Dumps</h1>
+				<p><span class="plus">+</span> out of context random Simpsons thumbnails</p>
 				<ul>
 					{
 						posts.map((post) => (

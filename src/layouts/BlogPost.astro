@@ -7,7 +7,7 @@ import FormattedDate from "../components/FormattedDate.astro";
 
 type Props = CollectionEntry<"blog">["data"];
 
-const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
+const { title, description, pubDate, updatedDate, heroImage, heroCredit } = Astro.props;
 ---
 
 <html lang="en">
@@ -22,6 +22,18 @@ const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
 			.hero-image {
 				width: 100%;
 				margin: 0 auto;
+				display: grid;
+				gap: 1em;
+			}
+
+			.hero-image img {
+				border: 1px solid rgba(var(--white), 0.25);
+			}
+
+			.hero-image figcaption {
+				font-size: 0.8em;
+				opacity: 0.5;
+				text-align: left;
 			}
 			.hero-image img {
 				display: block;
@@ -43,11 +55,14 @@ const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
 				line-height: 1;
 			}
 			.title h1 {
-				margin: 0 0 0.5em 0;
+				margin-bottom: 1em;
 			}
 			.date {
-				margin-bottom: 0.5em;
-				color: var(--secondary);
+				margin-bottom: 2em;
+				color: var(--white);
+				border: 1px solid var(--primary);
+				display: inline-flex;
+				padding: 0.5em 1em;
 			}
 			.last-updated-on {
 				font-style: italic;
@@ -74,19 +89,19 @@ const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
 							}
 						</div>
 						<h1>{title}</h1>
-						<div class="hero-image">
+						<figure class="hero-image">
 							{
 								heroImage && (
 									<img
 										width={1020}
 										height={510}
 										src={heroImage}
-										alt=""
+										alt={heroCredit}
 									/>
+									<figcaption>{heroCredit}</figcaption>
 								)
 							}
-						</div>
-						<hr />
+						</figure>
 					</div>
 					<slot />
 				</div>

@@ -7,8 +7,8 @@
 :root {
 	--primary: #9123ff;
 	--primary-dark: #0d0018;
-	--secondary: #31ffc8;
-	--secondary-dark: #03815b;
+	--secondary: yellow;
+	--tertiary: #31ffc8;
 	--white: 255, 255, 255;
 	--black: 0, 0, 0;
 	/* --black: 15, 18, 25; */

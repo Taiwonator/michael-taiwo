@@ -1,0 +1,153 @@
+---
+title: ' My Most Painful Project Experience'
+description: 'A reflection on leading a major internal build — and what I’d do differently'
+pubDate: 'May 28 2025'
+heroImage: '/Marge-from-The-Simpsons.avif'
+heroCredit: 'Simpsons'
+visibility: 'Visible'
+---
+
+In September 2023, I heard something that made my jaw drop: a user needed to go through more than **20 screens** just to sign up for an event.
+
+This wasn’t the fault of a single system. It was the result of multiple third-party services stitched together without a centralised datastore or shared logic. The user experience was an afterthought. Naturally, the question came up: *Could we build something better in-house?*
+
+A few of us thought, **“Of course.”**  
+We weren't wrong — but in reality it was **far from simple**.
+
+## What I Thought Would Happen
+
+I was familiar with our CMS, having come from the agency that built it. I assumed creating a new event content type would be quick. My manager, on the other hand, was more cautious. He pushed for clearly defined MVP requirements and firm boundaries on scope creep — a mindset I underestimated at the time.
+
+He focused on registration flows via a third-party. I jumped ahead, starting the build with minimal spec, wearing all the hats: designer, researcher, project manager, and sole developer.
+
+By December 2024, the build was "done." The CEO’s feedback was positive. I felt relieved — and proud.
+
+But I didn’t realise the true project hadn’t really started yet.
+
+## When Reality Hit
+
+There were known gaps: admin UX, automation, bulk operations. I planned to tackle them in early 2025.
+
+But Q1 came with a different agenda: a rollout under pressure, a fast-forwarded timeline, and no real capacity to clean up or iterate.
+
+My original manager had resigned due to burnout, new members had joined the team post initial release and I got sick — two weeks out of work, fun...
+
+Very quickly, the platform shifted from being something I proactively led to something I was constantly reacting to.
+
+## What Went Wrong
+For all the things I learned, the one area where I fell short was collaboration — not just communication, but shared ownership
+
+### No Plan for Onboarding Others
+
+The live version of the platform was built 100% by me. I tried to make it intuitive by sticking to existing CMS patterns — and for someone already familiar with articles and sections, it probably was.
+
+We did some user testing and internal training in December, which went well. But once Q1 hit and deadlines got pushed forward, onboarding was no longer a priority.
+
+That same quarter brought new team members with limited technical context, and there wasn’t time to bring them up to speed. I was pulled away. There was no plan in place to pick things up where I left off.
+
+### Assumed Usage Would Be Self-Explanatory
+
+Even as I introduced new features or tools, I wasn’t always explaining how or why to use them. I wanted to move on from Events — badly — and hoped things would just work.
+
+But they didn’t. And by the time previously flagged non-live critical gaps turned into **live critical gaps** — like incorrect timezones being shown across our events — the ship was already on its way down.
+
+### Lost Strategic Ownership
+
+We brought in a new project manager. In theory, they were meant to own the entire Events platform. In practice through no fault of their own, they were thrown into the deep end with too many projects at once and ended up acting more as a project coordinator — focused on immediate deliverables rather than future-proofing or platform-wide concerns.
+
+That left me and a designer, Martin, as the ones still proactively thinking about stability, user issues, and platform cohesion. For a while, we managed. But as new projects were layered in before Events had truly stabilised, we couldn’t keep up.
+
+From the outside, Events looked (and still may today) like a success. From the inside, we were firefighting constantly.
+
+### Fragile Infrastructure
+
+The system wasn’t fault-tolerant. Errors could occur within multiple layers:
+
+- Fetching from the database  
+- GraphQL resolver logic  
+- Frontend widget rendering
+
+Even adding a second frontend developer exposed more fragility. The system wasn’t forgiving — without a full understanding over how everything is wired up together, bugs were inevitable.
+
+In some places, I could literally trace every frontend error back to a single component: `Agenda`.
+
+### No Dedicated QA Process
+This was something my old manager and I pushed for early on. But within our team, we didn’t have the resources. When we asked people outside the team to help test, it was rarely done with the level of care needed — assuming it happened at all.
+
+That’s not surprising. Everyone felt overstretched in their own domain.
+
+The result? Regressions were often caught far later than they should have been. Features were assumed finished, only to have critical issues or change requests surface much later.
+
+### Monolithic Components and No Refactor Budget
+
+We ended up with massive, all-in-one components like `EventMegaHero` (mega added later in jest as the functionality ballooned) and `EventContentGrid` (serving as a grid for speakers, sponsors, videos, events, porfolios and the wretched agenda). Refactor tickets existed — but they rarely justified themselves in the broader roadmap.
+
+There were no clear sunset dates or tech debt burn-down cycles. And without them, the system just kept growing — more brittle, more tangled.
+
+### Too Many Competing Projects
+
+At one point, I counted more than 20 "high-priority" projects being worked on — *not* including technical maintenance or performance work on core features like Events.
+
+What kept happening was this: someone would notice an issue in Events — one that had already been flagged long before — but now that it was *seen*, We’d scramble to fix it to maintain positive internal perception. It often felt like we were optimising for stakeholder satisfaction rather than user experience.
+
+This wasn't malicious — just inevitable, given how many things were vying for attention.
+
+### Poor Flagging
+
+My brain naturally thinks in edge cases. *“Cool, but what about this?”* And I’ve seen how that can be frustrating for people just trying to get a release out the door. I’ve been on both sides.
+
+Flagging matters. But too often, the result is a backlog ticket that never sees daylight.
+
+In hindsight, we did document a lot. But we weren’t great at demonstrating the *impact* of what we flagged. That’s a skill I had to develop — not just pointing out flaws, but *showing* the consequences clearly.
+
+So I changed strategy. I stopped raising things in isolation and instead mapped out every issue I could think of, bundled with a 16-page requirements doc and supporting material for other teams. Flagging became less about improvement, more about protecting ourselves. And that’s never where you want to be.
+
+### Overworking to Meet Deadlines
+
+This one’s on me.
+
+I justified the long hours because, at first, I enjoyed it. But after December, it started to wear. Q1 became firefighting by day and side projects by night.
+
+I pushed hard — even stress tested the "AI pair programming agent" Augment Code to accelerate small tasks while I tackled bigger ones. But it wasn’t fun anymore. I wasn’t enjoying building; I was just being productive.
+
+The turning point? A useless `artislan` like CLI tool I built for the CMS. I actually liked the code. I realised that I had lost the pride I once had over my work.
+
+Work became harder to enjoy. My output was up, but so was the mental toll. I kept thinking: *Grind through the boring stuff so you can do what you like later*. But the boring stuff kept growing. My responsibilities kept growing. And I didn’t want them to.
+
+I made a conscious choice to stay technical — not become a manager. Yet most days now, I feel like a product owner wearing a developer’s badge.
+
+**UPDATE:** I'm on holiday today, but I was still required to disable a feature related to agenda due to timezone issues 🤦 — I’m not annoyed about the request itself; it just highlights the position I’ve put myself in that this is required.
+
+## What I’m Proud Of
+
+Despite everything, there’s a lot I value about the experience:
+
+- I learned that nudging things forward often means *showing*, not asking — through early designs, rough releases, and hands-on whiteboarding.
+- I saw firsthand how to navigate a stressed-out environment with colleagues under pressure.
+- I thought deeply about building for scale, not just immediate functionality.
+- I learned to respectfully push back against stakeholders and navigate internal politics.
+- I began building a team and bridging gaps between conflicting contributors.
+
+Ultimately jumping into such a large-scale project so soon after joining the company was a massive learning curve — one I’m grateful for.
+
+## Lessons I’ve Learned for Next Time
+- Research the broader problem landscape before diving into large projects.
+- Be directly involved in the initial requirements and discovery phases.
+- Avoid spreading myself too thin across too many responsibilities.
+- Don’t assume team workflows — either help define them or account for the lack of them.
+- Don’t assume other developers will understand or appreciate implementation decisions without clear context.
+- Spend fewer hours grinding on delivery; spend more time enjoying programming.
+- Build on a genuinely stable foundation — not just one that appears stable because it’s familiar. Old patterns may not scale for new features.
+- Don't take 'grind it out now so you can relax later' as an option anymore.
+
+## Final Thoughts
+
+I'm sure there is much that I have missed out, but in the end this project wasn’t a failure — it was a rushed win. A lesson in what happens when good intentions meet shifting priorities and limited resource.
+
+No one person is to blame, and I hold no bitterness toward anyone involved in the project.
+
+Would I do it again? Probably. But next time, I’d build slower. I’d push harder for onboarding, clear ownership, and sunset plans — and make sure I wasn’t the only one carrying the weight.
+
+Eventually, too much responsibility becomes crushing. And that’s exactly how it feels now.
+
+I'm leading the development of a new CMS, and I intend to carry these lessons forward — not just to avoid the same mistakes, but to build something more sustainable.
